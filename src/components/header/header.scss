@@ -1,0 +1,256 @@
+@import '../../style/vars';
+
+.header {
+  background: #591405;
+  @include adaptiv-value('padding-top', 40, 30, 1);
+  @include adaptiv-value('padding-bottom', 40, 30, 1);
+  &__container {
+    display: flex;
+    column-gap: 10px;
+    row-gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) and (max-width: 1110px) {
+    &__logo {
+      order: 1;
+    }
+    &__menu {
+      order: 4;
+      margin: 0 auto;
+    }
+    &__search {
+      order: 2;
+    }
+    &__auth {
+      order: 3;
+    }
+  }
+
+  &__logo {
+    font-family: 'Arial';
+    @include adaptiv-value('font-size', 20, 16, 1);
+    color: #FFFFFF;
+    font-weight: bold;
+    background: #2B2B2B;
+    @include adaptiv-value('padding', 10, 8, 1);
+    max-height: 40px;
+    border-radius: 8px;
+  }
+
+  &__menu {}
+
+  &__search {
+    position: relative;
+  }
+
+  &__button {
+    position: absolute;
+    top: 6px;
+    padding-left: 8px;
+    background-color: transparent;
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__input {
+    background: #222;
+    border-radius: 4px;
+    padding: 4px 8px;
+    @include adaptiv-value('width', 299, 180, 1);
+    height: 32px;
+    padding: 4px 8px 4px 44px;
+    @include adaptiv-value('padding-left', 44, 34, 1);
+    color: #FFFFFF;
+    &::placeholder {
+      font-weight: 500;
+      color: #FFFFFF;
+    }
+  }
+
+  &__auth {
+    display: flex;
+    @include adaptiv-value('gap', 16, 12, 1);
+  }
+
+  &__signup {
+    border-radius: 4px;
+    padding: 8px 16px;
+    @include adaptiv-value('padding-left', 16, 12, 1);
+    @include adaptiv-value('padding-right', 16, 12, 1);
+    background: #df2144;
+    @include adaptiv-value('font-size', 16, 14, 1);
+    text-align: center;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        background: #df2144a2;
+      }
+    }
+  }
+
+  &__login {
+    border-radius: 4px;
+    padding: 8px 16px;
+    @include adaptiv-value('padding-left', 16, 12, 1);
+    @include adaptiv-value('padding-right', 16, 12, 1);
+    background: #df2144;
+    @include adaptiv-value('font-size', 16, 14, 1);
+    text-align: center;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        background: #df2144a2;
+      }
+    }
+  }
+}
+
+.menu {
+  &__icon {
+    display: none;
+  }
+
+  &__body {}
+
+  &__list {
+    display: flex;
+    gap: 15px;
+  }
+
+  &__item {
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .menu {
+    flex: 0 1 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    &__icon {
+      z-index: 5;
+      display: block;
+      position: relative;
+      width: 27px;
+      height: 16px;
+      cursor: pointer;
+
+      span,
+      &::before,
+      &::after {
+        left: 0;
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        transition: all 0.3s ease 0s;
+        background-color: #fff;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      &::after {
+        bottom: 0;
+      }
+
+      span {
+        top: 50%;
+        transform: scale(1) translate(0px, -50%);
+      }
+
+      &._active {
+        span {
+          transform: scale(0) translate(0px, -50%);
+        }
+
+        &::before {
+          top: 50%;
+          transform: rotate(-45deg) translate(0px, -50%);
+        }
+
+        &::after {
+          bottom: 50%;
+          transform: rotate(45deg) translate(0px, 50%);
+        }
+      }
+    }
+
+    &__body {
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 90px 30px 30px 30px;
+      @include adaptiv-value('padding-top', 160, 100, 1);
+      transition: top 0.3s ease 0s;
+      overflow: auto;
+      z-index: 4;
+
+      &::before {
+        content: '';
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        @include adaptiv-value('min-height', 104, 60, 1);
+        background: var(--fon-dark);
+        z-index: 2;
+      }
+
+      &._active {
+        top: 0;
+      }
+    }
+
+    &__list {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+    }
+
+    &__item {
+      font-size: 26px;
+
+      &:not(:last-child) {
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 455px) {
+  .header {
+    &__search,
+    &__auth {
+      margin: 0 auto;
+    }
+  }
+}
