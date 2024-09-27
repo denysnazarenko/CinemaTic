@@ -1,0 +1,156 @@
+@import '../../style/vars';
+
+.main {
+  position: relative;
+  &__container-big {
+    padding: 0 !important;
+  }
+  &__slider {}
+  &__slide {}
+}
+
+.slide-main {
+  margin: 0 auto;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  @media (max-height: 600px) {
+    justify-content: end;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    @include adaptiv-value('width', 362, 300, 1);
+    padding: 10px;
+    @include adaptiv-value('margin-right', 100, 10, 1);
+    @media (max-width: 767px) {
+      margin-top: 50px;
+    }
+    @media (max-height: 600px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__title {
+    font-weight: 800;
+    @include adaptiv-value('font-size', 40, 24, 1);
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 15, 10, 1);
+    }
+  }
+
+  &__overview {
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 15, 10, 1);
+    }
+    h3 {
+      font-weight: 600;
+      @include adaptiv-value('font-size', 20, 16, 1);
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+    p {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+
+  &__genre-title {
+    text-align: center;
+    font-weight: 600;
+    @include adaptiv-value('font-size', 20, 16, 1);
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 10, 8, 1);
+    }
+  }
+
+  &__genre-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    @include adaptiv-value('gap', 10, 8, 1);
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 15, 10, 1);
+    }
+  }
+
+  &__genre-item {
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__rating {
+    align-self: center;
+    span {
+      font-weight: 600;
+      @include adaptiv-value('font-size', 20, 16, 1);
+      color: #eebb07;
+    }
+    font-weight: 500;
+    @include adaptiv-value('font-size', 16, 14, 1);
+    padding-left: 30px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      @include adaptiv-value('top', -3.5, -4.5, 1);
+      left: 0;
+      width: 25px;
+      height: 25px;
+      background: url(../../assets/main/rating.svg) no-repeat;
+    }
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 15, 10, 1);
+    }
+  }
+
+  &__release {
+    font-weight: 500;
+    @include adaptiv-value('font-size', 16, 14, 1);
+    text-align: center;
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 15, 10, 1);
+    }
+  }
+
+  &__button {
+    border-radius: 4px;
+    padding: 8px 24px;
+    background: #df2144;
+    font-family: var(--font-family);
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        background: #df2144a2;
+      }
+    }
+  }
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 60px;
+  height: 60px;
+  background: #1e1e1e;
+  color: #df2144;
+  border-radius: 50%;
+}
+
+@media (max-width: 1050px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}

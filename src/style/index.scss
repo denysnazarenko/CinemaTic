@@ -98,10 +98,17 @@ body {
   font-family: 'Nunito Sans';
   color: #FFFFFF;
   font-size: 16px;
+  background: #303030;
 }
 
 [class*="__container"] {
   max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+[class*="__container-big"] {
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 15px;
 }
