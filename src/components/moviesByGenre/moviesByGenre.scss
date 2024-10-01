@@ -1,0 +1,155 @@
+@import '../../style/vars';
+
+.genre-movies {
+  @include adaptiv-value('padding-top', 40, 30, 1);
+  @include adaptiv-value('padding-bottom', 40, 30, 1);
+  &__container {}
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 30, 20, 1);
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    @include adaptiv-value('gap', 24, 18, 1);
+  }
+
+  &__title {
+    text-align: right;
+    font-weight: 700;
+    @include adaptiv-value('font-size', 24, 18, 1);
+  }
+
+  &__slider {}
+
+  &__slide {}
+}
+
+.slide-genre-movies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__content {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 224px;
+  }
+
+  &__image {
+    img {
+      width: 224px;
+      height: 320px;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+    &:hover .slide-genre-movies__hover{
+      opacity: 1;
+    }
+  }
+
+  &__hover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    gap: 20px;
+  }
+
+  &__overview {
+    h3 {
+      font-weight: 600;
+      font-size: 20px;
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+
+  &__genre {
+    h3 {
+      font-weight: 500;
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+    ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: 10px;
+      row-gap: 6px;
+    }
+  }
+
+  &__genre-item {
+    font-size: 12px;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: #2f2f2f;
+    width: 224px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3.5px;
+      left: 38%;
+      transform: translateX(-50%);
+      width: 17px;
+      height: 17px;
+      background: url(../../assets/moviesByGenre/rating.svg) no-repeat;
+    }
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__title {
+    width: 224px;
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+.custom-prev,
+.custom-next {
+  @include adaptiv-value('width', 48, 30, 1);
+  @include adaptiv-value('height', 48, 30, 1);
+  background: #1e1e1e;
+  border-radius: 24px;
+  @include adaptiv-value('padding', 8, 4, 1);
+  img {
+    @include adaptiv-value('height', 30, 20, 1);
+    @include adaptiv-value('width', 18, 12, 1);
+    object-fit: cover;
+  }
+}
+
+.custom-next {
+  rotate: 180deg;
+}

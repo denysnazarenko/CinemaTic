@@ -20,7 +20,9 @@ export const fetchNewReleases = createAsyncThunk(
         title: result.title,
         genre_ids: result.genre_ids,
         image: result.backdrop_path,
-        overview: result.overview,
+        overview: result.overview
+          ? `${result.overview.slice(0, 210)}...`
+          : 'Зміст фільма відсутній',
         rating: Number(result.vote_average.toFixed(1)),
         release_date: result.release_date.slice(0, 4),
         id: result.id

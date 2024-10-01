@@ -31,7 +31,7 @@ const Main = () => {
       )
     }
 
-    return movies.map(({ title, genre_ids, image, overview, rating, release_date }, index) => {
+    return movies.map(({ title, genre_ids, image, overview, rating, release_date, id }) => {
       const movieGenres = genre_ids.map(id => genres.find(genre => genre.id === id)?.name || '');
 
       const renderMovieGenres = (movieGenres) => {
@@ -43,15 +43,10 @@ const Main = () => {
       };
 
       const genresList = renderMovieGenres(movieGenres);
-      if (overview.length == 0) {
-        overview = 'Зміст фільма відсутній';
-      } else if (overview.length > 200) {
-        overview = overview.slice(0, 200) + '...';
-      }
 
       return (
         <SwiperSlide
-          key={index}
+          key={id}
           className='main__slide slide-main'
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${image})` }}>
           <div className="slide-main__content">
