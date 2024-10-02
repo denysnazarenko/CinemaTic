@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMoviesByGenre, selectAll } from './moviesByGenreSlice';
+import { fetchMoviesByGenre, selectMoviesByGenre } from './moviesByGenreSlice';
 import { selectAll as selectAllGenres } from '../main/genresSlice';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -16,7 +15,7 @@ import arrow from '../../assets/moviesByGenre/arrow.svg';
 const MoviesByGenre = ({ genre }) => {
   const dispatch = useDispatch();
   const allGenres = useSelector(selectAllGenres);
-  const movies = useSelector(selectAll);
+  const movies = useSelector(selectMoviesByGenre(genre));
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);

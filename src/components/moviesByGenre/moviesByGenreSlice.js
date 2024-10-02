@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import { useHttp } from '../../hooks/http.hook';
 
-const moviesByGenreAdapter = createEntityAdapter();
+const initialState = {
+  moviesByGenre: {},
+  moviesByGenreLoadingStatus: 'idle',
+};
 
-const initialState = moviesByGenreAdapter.getInitialState({
-  moviesByGenreLoadingStatus: 'idle'
-});
 
 export const fetchMoviesByGenre = createAsyncThunk(
   'moviesByGenre/fetchMoviesByGenre',
@@ -28,7 +28,7 @@ export const fetchMoviesByGenre = createAsyncThunk(
       }
     });
 
-    return data;
+    return { genreId, data };
   }
 );
 
@@ -42,13 +42,18 @@ const moviesByGenreSlice = createSlice({
       .addCase(fetchMoviesByGenre.rejected, state => { state.moviesByGenreLoadingStatus = 'error' })
       .addCase(fetchMoviesByGenre.fulfilled, (state, action) => {
         state.moviesByGenreLoadingStatus = 'idle';
-        moviesByGenreAdapter.setAll(state, action.payload);
+        const { genreId, data } = action.payload;
+
+        state.moviesByGenre[genreId] = data;
       })
   }
 });
 
 const { reducer } = moviesByGenreSlice;
 
-export const { selectAll } = moviesByGenreAdapter.getSelectors(state => state.moviesByGenre);
+export const selectMoviesByGenre = (genreId) => createSelector(
+  state => state.moviesByGenre.moviesByGenre[genreId],
+  (movies) => movies || []
+);
 
 export default reducer;
