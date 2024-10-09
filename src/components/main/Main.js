@@ -72,7 +72,7 @@ const Main = () => {
 
   return (
     <section className="main">
-      <Header />
+      <Header bg='rgba(0, 0, 0, 0.5)' position='absolute' />
       <div className="main__container main__container-big">
         <Swiper className='main__slider'
           modules={[Navigation, Autoplay]}

@@ -1,5 +1,11 @@
 .main {
   position: relative;
+  padding-bottom: 40px;
+}
+@media (max-width: 1370px) {
+  .main {
+    padding-bottom: calc(30px + 10 * (100vw - 320px) / 1050);
+  }
 }
 .main__container-big {
   padding: 0 !important;

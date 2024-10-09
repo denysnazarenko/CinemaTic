@@ -1,0 +1,42 @@
+.error {
+  max-width: 300px;
+  margin: 0 auto;
+  color: red;
+  font-size: 24px;
+  text-align: center;
+  animation: shake 4s infinite;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  45% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  55% {
+    transform: translateX(5px);
+  }
+
+  60% {
+    transform: translateX(-5px);
+  }
+
+  65% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

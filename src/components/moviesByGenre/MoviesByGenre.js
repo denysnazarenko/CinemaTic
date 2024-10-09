@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMoviesByGenre, selectMoviesByGenre } from './moviesByGenreSlice';
 import { selectAll as selectAllGenres } from '../main/genresSlice';
+import { setMovieId } from '../MovieInfoPanel/MovieDetailsSlice';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -27,7 +28,7 @@ const MoviesByGenre = ({ genre }) => {
   const renderMoviesSlides = (movies, genres) => {
     if (movies.length === 0) {
       return (
-        <h5 className="text-center mt-5">Фільмі поки немає</h5>
+        <h5 className="">Фільмі поки немає</h5>
       )
     }
 
@@ -48,6 +49,7 @@ const MoviesByGenre = ({ genre }) => {
         <SwiperSlide
           key={id}
           className="genre-movies__slide slide-genre-movies"
+          onClick={() => dispatch(setMovieId(id))}
         >
           <div className="slide-genre-movies__content">
             <div className="slide-genre-movies__image">

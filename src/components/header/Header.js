@@ -5,9 +5,14 @@ import './header.scss';
 
 import searchIcon from '../../assets/header/search.svg';
 
-const Header = () => {
+const Header = ({ bg, position }) => {
+  const headerStyle = {
+    backgroundColor: `${bg}`,
+    position: position
+  }
+
   return (
-    <header className="header">
+    <header className="header" style={headerStyle}>
       <div className="header__container">
         <a href="" className="header__logo">CinemaTic</a>
         <Menu />
