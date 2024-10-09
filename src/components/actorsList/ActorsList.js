@@ -33,11 +33,19 @@ const ActorsList = () => {
         <SwiperSlide
           id={id}
           className="actors__slide slide-actors">
-
+          <div className="slide-actors__content">
+            <div className="slide-actors__image">
+              <img src={`https://image.tmdb.org/t/p/original${image}`} alt="Actor Image" />
+            </div>
+            <div className="slide-actors__name">{name}</div>
+            <div className="slide-actors__character">{character}</div>
+          </div>
         </SwiperSlide>
       )
     })
   }
+
+  const actorsSlides = renderActorsSlides(actors);
 
   return (
     <section className="actors">
@@ -74,15 +82,15 @@ const ActorsList = () => {
               slidesPerView: 1,
               spaceBetween: 10,
             },
-            550: {
+            500: {
               slidesPerView: 2,
               spaceBetween: 20,
             },
-            768: {
+            700: {
               slidesPerView: 3,
               spaceBetween: 30,
             },
-            1024: {
+            950: {
               slidesPerView: 4,
               spaceBetween: 30,
             },
@@ -91,7 +99,7 @@ const ActorsList = () => {
               spaceBetween: 32,
             },
           }}>
-
+          {actorsSlides}
         </Swiper>
       </div>
     </section>
