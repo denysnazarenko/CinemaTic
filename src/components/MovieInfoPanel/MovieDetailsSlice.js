@@ -40,11 +40,7 @@ export const fetchMovieDetails = createAsyncThunk(
 const MovieDetailsSlice = createSlice({
   name: 'movieDetails',
   initialState,
-  reducers: {
-    setMovieId: (state, action) => {
-      state.movieId = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchMovieDetails.pending, state => { state.movieDetailsLoadingStatus = 'loading' })
@@ -56,7 +52,6 @@ const MovieDetailsSlice = createSlice({
   }
 });
 
-const { actions, reducer } = MovieDetailsSlice;
+const { reducer } = MovieDetailsSlice;
 
 export default reducer;
-export const { setMovieId } = actions;

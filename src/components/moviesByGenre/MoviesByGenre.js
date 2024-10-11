@@ -2,13 +2,16 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMoviesByGenre, selectMoviesByGenre } from './moviesByGenreSlice';
 import { selectAll as selectAllGenres } from '../main/genresSlice';
-import { setMovieId } from '../MovieInfoPanel/MovieDetailsSlice';
+import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+
+import Spinner from "../spinner/Spinner";
+import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import './moviesByGenre.scss';
 import arrow from '../../assets/moviesByGenre/arrow.svg';
@@ -17,6 +20,8 @@ const MoviesByGenre = ({ genre }) => {
   const dispatch = useDispatch();
   const allGenres = useSelector(selectAllGenres);
   const movies = useSelector(selectMoviesByGenre(genre));
+  const { moviesByGenreLoadingStatus } = useSelector(state => state.moviesByGenre);
+  const navigate = useNavigate();
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -25,10 +30,14 @@ const MoviesByGenre = ({ genre }) => {
     dispatch(fetchMoviesByGenre(genre));
   }, [genre])
 
+  const handleSlideClick = (id) => {
+    navigate(`/movie/${id}`);
+  };
+
   const renderMoviesSlides = (movies, genres) => {
     if (movies.length === 0) {
       return (
-        <h5 className="">Фільмі поки немає</h5>
+        <h5 className="">Фільмів поки немає</h5>
       )
     }
 
@@ -49,7 +58,7 @@ const MoviesByGenre = ({ genre }) => {
         <SwiperSlide
           key={id}
           className="genre-movies__slide slide-genre-movies"
-          onClick={() => dispatch(setMovieId(id))}
+          onClick={() => handleSlideClick(id)}
         >
           <div className="slide-genre-movies__content">
             <div className="slide-genre-movies__image">
@@ -93,46 +102,56 @@ const MoviesByGenre = ({ genre }) => {
           </div>
           <h2 className="genre-movies__title">{genreByText}</h2>
         </div>
-        <Swiper
-          className="genre-movies__slider"
-          modules={[Navigation]}
-          loop={true}
-          speed={600}
-          spaceBetween={32}
-          slidesPerView={5}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.update();
-          }}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            550: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 30,
-            },
-            1200: {
-              slidesPerView: 5,
-              spaceBetween: 32,
-            },
-          }}>
-          {moviesSlides}
-        </Swiper>
+        {moviesByGenreLoadingStatus === 'loading' ? (
+          <div className="actors__slider-loading">
+            <Spinner />
+          </div>
+        ) : moviesByGenreLoadingStatus === 'error' ? (
+          <div className="actors__slider-error">
+            <ErrorMessage />
+          </div>
+        ) : (
+          <Swiper
+            className="genre-movies__slider"
+            modules={[Navigation]}
+            loop={true}
+            speed={600}
+            spaceBetween={32}
+            slidesPerView={5}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+              swiper.navigation.update();
+            }}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              550: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+              1200: {
+                slidesPerView: 5,
+                spaceBetween: 32,
+              },
+            }}>
+            {moviesSlides}
+          </Swiper>
+        )}
       </div>
     </section>
   )

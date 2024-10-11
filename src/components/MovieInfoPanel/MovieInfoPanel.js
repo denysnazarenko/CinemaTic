@@ -10,8 +10,8 @@ import './movieInfoPanel.scss';
 
 import ratingIcon from '../../assets/main/rating.svg';
 
-const MovieInfoPanel = () => {
-  const { movieId, movieData, movieDetailsLoadingStatus } = useSelector(state => state.movieDetails);
+const MovieInfoPanel = ({ movieId }) => {
+  const { movieData, movieDetailsLoadingStatus } = useSelector(state => state.movieDetails);
   const dispatch = useDispatch();
 
   useEffect(() => {

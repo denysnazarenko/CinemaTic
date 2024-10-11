@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import './menu.scss';
 
@@ -27,7 +28,7 @@ const Menu = () => {
       <nav className={`menu__body ${isOpen ? "_active" : ""}`}>
         <ul className="menu__list">
           <li className="menu__item">
-            <a href="">Головна сторінка</a>
+            <Link to="/">Головна сторінка</Link>
           </li>
           <li className="menu__item">
             <a href="">Акції та знижки</a>

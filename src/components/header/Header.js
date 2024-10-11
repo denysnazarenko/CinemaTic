@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import Menu from '../menu/Menu';
 
 import './header.scss';
@@ -14,7 +16,7 @@ const Header = ({ bg, position }) => {
   return (
     <header className="header" style={headerStyle}>
       <div className="header__container">
-        <a href="" className="header__logo">CinemaTic</a>
+        <Link to="/" className="header__logo">CinemaTic</Link>
         <Menu />
         <div className="header__search">
           <form className="header__search">
