@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { openModal } from '../Modal/modalSlice';
 
 import Menu from '../menu/Menu';
 
@@ -8,6 +10,16 @@ import './header.scss';
 import searchIcon from '../../assets/header/search.svg';
 
 const Header = ({ bg, position }) => {
+  const dispatch = useDispatch();
+
+  const openRegisterModal = () => {
+    dispatch(openModal(true));
+  };
+
+  const openLoginModal = () => {
+    dispatch(openModal(false));
+  };
+
   const headerStyle = {
     backgroundColor: `${bg}`,
     position: position
@@ -33,8 +45,8 @@ const Header = ({ bg, position }) => {
           </form>
         </div>
         <div className="header__auth">
-          <a href="" className="header__signup">Зареєструватися</a>
-          <a href="" className="header__login">Увійти</a>
+          <button onClick={openRegisterModal} className="header__signup">Зареєструватися</button>
+          <button onClick={openLoginModal} className="header__login">Увійти</button>
         </div>
       </div>
     </header >

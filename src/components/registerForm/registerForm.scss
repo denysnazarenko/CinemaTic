@@ -1,0 +1,77 @@
+@import '../../style/vars';
+
+.register-form {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  &__close {
+    text-align: right;
+    cursor: pointer;
+    font-size: 25px;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__name,
+  &__email,
+  &__phone,
+  &__password {
+    display: flex;
+    flex-direction: column;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 20px;
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+    input {
+      height: 40px;
+      background: #fff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+      border: none;
+      font-size: 18px;
+      text-align: center;
+      padding: 0 20px;
+      outline: 0
+    }
+  }
+
+  &__name {}
+
+  &__email {}
+
+  &__phone {}
+
+  &__password {}
+
+  &__submit {
+    border-radius: 4px;
+    padding: 8px 16px;
+    @include adaptiv-value('padding-left', 16, 12, 1);
+    @include adaptiv-value('padding-right', 16, 12, 1);
+    background: #df2144;
+    @include adaptiv-value('font-size', 16, 14, 1);
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        background: #df2144c9;
+      }
+    }
+  }
+}
