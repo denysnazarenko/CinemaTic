@@ -1,4 +1,7 @@
+@import '../../style/vars';
+
 .modal {
+  padding: 15px;
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +20,8 @@
   &__content {
     position: relative;
     width: 100%;
-    padding: 40px;
+    @include adaptiv-value('padding', 40, 15, 1);
+    @include adaptiv-value('padding-bottom', 40, 20, 1);
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 4px;
