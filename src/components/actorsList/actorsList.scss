@@ -1,8 +1,8 @@
 @import '../../style/vars';
 
 .actors {
-  padding-top: 80px;
-  padding-bottom: 40px;
+  @include adaptiv-value('padding-top', 40, 30, 1);
+  @include adaptiv-value('padding-bottom', 40, 30, 1);
 
   &__container {}
 

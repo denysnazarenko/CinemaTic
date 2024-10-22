@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../Modal/modalSlice';
+
 import './loginForm.scss';
 
 const LoginForm = () => {

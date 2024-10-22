@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { openModal } from '../Modal/modalSlice';
@@ -13,11 +12,11 @@ const Header = ({ bg, position }) => {
   const dispatch = useDispatch();
 
   const openRegisterModal = () => {
-    dispatch(openModal(true));
+    dispatch(openModal('register'));
   };
 
   const openLoginModal = () => {
-    dispatch(openModal(false));
+    dispatch(openModal('login'));
   };
 
   const headerStyle = {

@@ -1,6 +1,10 @@
 @import '../../style/vars';
 
-.login-form {
+.ticket {
+  &__purchase {}
+}
+
+.purchase-ticket {
   color: black;
   display: flex;
   flex-direction: column;
@@ -19,43 +23,28 @@
     text-align: center;
     font-weight: 600;
     &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 25, 20, 1);
+    }
+  }
+
+  &__date {
+    @include adaptiv-value('font-size', 20, 16, 1);
+    font-weight: 500;
+    &:not(:last-child) {
       @include adaptiv-value('margin-bottom', 15, 10, 1);
     }
   }
 
-  &__email,
-  &__password {
-    display: flex;
-    flex-direction: column;
+  &__time {
+    @include adaptiv-value('font-size', 20, 16, 1);
+    font-weight: 500;
     &:not(:last-child) {
       @include adaptiv-value('margin-bottom', 20, 15, 1);
     }
-    label {
-      @include adaptiv-value('font-size', 20, 16, 1);
-      &:not(:last-child) {
-        margin-bottom: 5px;
-      }
-    }
-    input {
-      @include adaptiv-value('height', 40, 30, 1);
-      background: #fff;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-      border: none;
-      @include adaptiv-value('font-size', 18, 15, 1);
-      text-align: center;
-      padding: 0 20px;
-      outline: 0;
-      &:not(:last-child) {
-        margin-bottom: 1px;
-      }
-    }
   }
 
-  &__email {}
-
-  &__password {}
-
-  &__submit {
+  &__button {
+    align-self: center;
     border-radius: 4px;
     padding: 8px 16px;
     @include adaptiv-value('padding-left', 16, 12, 1);
@@ -71,9 +60,5 @@
         background: #df2144c9;
       }
     }
-  }
-
-  &__error-message {
-    color: red;
   }
 }

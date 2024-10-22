@@ -104,17 +104,6 @@
       overflow: auto;
       z-index: 4;
 
-      &::before {
-        content: '';
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        @include adaptiv-value('min-height', 104, 60, 1);
-        background: var(--fon-dark);
-        z-index: 2;
-      }
-
       &._active {
         top: 0;
       }
