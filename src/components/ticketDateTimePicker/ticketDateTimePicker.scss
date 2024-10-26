@@ -6,10 +6,10 @@
   &__container {}
 
   &__title {
-    font-size: 24px;
+    @include adaptiv-value('font-size', 24, 20, 1);
     font-weight: 500;
     &:not(:last-child) {
-      margin-bottom: 25px;
+      @include adaptiv-value('margin-bottom', 25, 20, 1);
     }
   }
 
@@ -45,11 +45,11 @@
 
 .days-time {
   &:not(:last-child) {
-    margin-bottom: 25px;
+    @include adaptiv-value('margin-bottom', 25, 20, 1);
   }
   &__list {
     display: flex;
-    gap: 20px;
+    @include adaptiv-value('gap', 20, 16, 1);
   }
 
   &__item {
@@ -65,11 +65,12 @@
 
 .hours-time {
   &:not(:last-child) {
-    margin-bottom: 25px;
+    @include adaptiv-value('margin-bottom', 25, 20, 1);
   }
   &__list {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    @include adaptiv-value('gap', 20, 16, 1);
   }
 
   &__item {
