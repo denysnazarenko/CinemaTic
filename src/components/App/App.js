@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 import MainPage from '../pages/MainPage';
 import MoviePage from '../pages/MoviePage';
+import AboutUsPage from "../pages/AboutUsPage";
 import Footer from '../footer/Footer';
 import Modal from "../Modal/Modal";
 import RegisterForm from "../registerForm/RegisterForm";
@@ -17,19 +18,22 @@ const App = () => {
 
   return (
     <Router>
-      <main className="app">
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/movie/:id" element={<MoviePage />} />
-        </Routes>
+      <div className="app">
+        <main>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/movie/:id" element={<MoviePage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+          </Routes>
+        </main>
         <Footer />
         <Modal>
           {modalType === 'register' && <RegisterForm />}
           {modalType === 'login' && <LoginForm />}
           {modalType === 'ticketPurchase' && <TicketPurchase />}
         </Modal>
-      </main>
+      </div>
     </Router>
   )
 }

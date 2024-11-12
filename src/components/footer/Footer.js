@@ -1,4 +1,4 @@
-import Menu from '../menu/Menu';
+import { Link } from 'react-router-dom';
 
 import './footer.scss';
 
@@ -17,7 +17,7 @@ const Footer = () => {
                 <a href="">Акції та знижки</a>
               </li>
               <li className="menu-footer__item">
-                <a href="">Про нас</a>
+                <Link to="/about-us">Про нас</Link>
               </li>
               <li className="menu-footer__item">
                 <a href="">Контакти</a>

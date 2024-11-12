@@ -34,7 +34,7 @@ const Menu = () => {
             <a href="">Акції та знижки</a>
           </li>
           <li className="menu__item">
-            <a href="">Про нас</a>
+            <Link to="/about-us">Про нас</Link>
           </li>
           <li className="menu__item">
             <a href="">Контакти</a>

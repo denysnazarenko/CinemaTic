@@ -67,7 +67,6 @@ const MovieInfoPanel = ({ movieId }) => {
         </div>
       </div>
     </section>
-
   )
 }
 

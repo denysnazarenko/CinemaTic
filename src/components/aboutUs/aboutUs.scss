@@ -1,0 +1,23 @@
+@import '../../style/vars';
+
+.about-us {
+  @include adaptiv-value('padding-top', 40, 30, 1);
+  @include adaptiv-value('padding-bottom', 40, 30, 1);
+  &__container {}
+
+  &__title {
+    text-align: center;
+    font-weight: 800;
+    @include adaptiv-value('font-size', 40, 26, 1);
+    &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 35, 20, 1);
+    }
+  }
+
+  &__info {
+    @include adaptiv-value('font-size', 18, 16, 1);
+    p {
+      @include adaptiv-value('margin-bottom', 10, 8, 1);
+    }
+  }
+}
