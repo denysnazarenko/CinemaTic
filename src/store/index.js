@@ -9,7 +9,7 @@ import ticketDateTime from '../components/ticketDateTimePicker/TicketDateTimeSli
 import movieAutocomplete from '../components/header/movieAutocompleteSlice';
 
 const _apiBase = 'https://api.themoviedb.org/3/';
-const _apiKey = '7121a545fb5b87984a51947d0de512b7';
+const _apiKey = 'hide';
 
 const store = configureStore({
   reducer: { newReleases, genres, moviesByGenre, movieDetails, actors, modal, ticketDateTime, movieAutocomplete },
