@@ -39,6 +39,14 @@
     @include adaptiv-value('font-size', 20, 16, 1);
     font-weight: 500;
     &:not(:last-child) {
+      @include adaptiv-value('margin-bottom', 15, 10, 1);
+    }
+  }
+
+  &__price {
+    @include adaptiv-value('font-size', 20, 16, 1);
+    font-weight: 500;
+    &:not(:last-child) {
       @include adaptiv-value('margin-bottom', 20, 15, 1);
     }
   }

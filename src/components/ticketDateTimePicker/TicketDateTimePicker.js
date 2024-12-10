@@ -7,6 +7,7 @@ import './ticketDateTimePicker.scss';
 
 const TicketDateTimePicker = () => {
   const [days, setDays] = useState([]);
+  const [price, setPrice] = useState(() => Math.floor(Math.random() * (199 - 149 + 1)) + 149.99);
   const dispatch = useDispatch();
   const { selectedDay, selectedTime } = useSelector(state => state.ticketDateTime)
 
@@ -29,7 +30,7 @@ const TicketDateTimePicker = () => {
     return days.map(({ dayMont, dayWeek, Month }, index) => {
       const dayWithMonth = `${dayMont} ${monthsWithGenitive[Month]}`;
       return (
-        <li key={index} className={`days-time__item ${dayWithMonth == selectedDay ? "days-time__item-active" : ""}`} onClick={() => dispatch(setSelectedDay(dayWithMonth))}>{dayMont}<br />{weekDays[dayWeek]}</li>
+        <li key={index} className={`days-time__item ${dayWithMonth == selectedDay ? "days-time__item-active" : ""}`} onClick={() => dispatch(setSelectedDay({dayWithMonth, price}))}>{dayMont}<br />{weekDays[dayWeek]}</li>
       )
     })
   }
@@ -64,6 +65,7 @@ const TicketDateTimePicker = () => {
             {hoursList}
           </ul>
         </div>
+        <h3 className="time__title">Ціна: {price}</h3>
         <button
           className={`time__button ${!selectedDay || !selectedTime ? 'time__button-disabled' : ''}`}
           disabled={!selectedDay || !selectedTime}

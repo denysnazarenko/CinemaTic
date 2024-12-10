@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   selectedDay: null,
-  selectedTime: null
+  selectedTime: null,
+  price: null,
 }
 
 const ticketDateTimeSlice = createSlice({
@@ -10,7 +11,8 @@ const ticketDateTimeSlice = createSlice({
   initialState,
   reducers: {
     setSelectedDay(state, action) {
-      state.selectedDay = action.payload;
+      state.selectedDay = action.payload.dayWithMonth;
+      state.price = action.payload.price;
     },
     setSelectedTime(state, action) {
       state.selectedTime = action.payload;
@@ -18,6 +20,7 @@ const ticketDateTimeSlice = createSlice({
     resetSelection(state) {
       state.selectedDay = null;
       state.selectedTime = null;
+      state.price = null;
     }
   }
 });
