@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHttp } from '../../hooks/http.hook';
 import { v4 as uuidv4 } from 'uuid';
 import { closeModal } from '../Modal/modalSlice';
 
@@ -11,6 +12,7 @@ const RegisterForm = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userPhone, setUserPhone] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const { request } = useHttp();
 
   const onPhoneChange = (e) => {
     const input = e.target.value;
@@ -34,6 +36,10 @@ const RegisterForm = () => {
       phone: userPhone,
       password: userPassword
     };
+
+    request("http://localhost:3001/users", "POST", JSON.stringify(newUser))
+      .then(res => console.log(res, 'Успіх'))
+      .catch(error => console.log(error));
 
     localStorage.setItem('user', JSON.stringify(newUser));
 

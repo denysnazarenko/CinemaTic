@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHttp } from '../../hooks/http.hook';
 import { closeModal } from '../Modal/modalSlice';
 
 import './loginForm.scss';
@@ -8,8 +9,10 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  // const [emailError, setEmailError] = useState(false);
+  // const [passwordError, setPasswordError] = useState(false);
+  const { request } = useHttp();
 
   const onPasswordChange = (e) => {
     const input = e.target.value;
@@ -17,40 +20,60 @@ const LoginForm = () => {
     setUserPassword(validInput);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    try {
+      const users = await request("http://localhost:3001/users");
 
-    if (storedUser) {
-      if (storedUser.email !== userEmail) {
-        setEmailError(true);
-      } else {
-        setEmailError(false);
-      }
+      const user = users.find(
+        (u) => u.email === userEmail && u.password === userPassword
+      );
 
-      if (storedUser.password !== userPassword) {
-        setPasswordError(true);
-      } else {
-        setPasswordError(false);
-      }
-
-      if (storedUser.email === userEmail && storedUser.password === userPassword) {
-        const userLogin = {
-          email: userEmail,
-          password: userPassword
-        };
-
-        localStorage.setItem('userLogin', JSON.stringify(userLogin));
-
+      if (user) {
+        setLoginError(false);
         setUserEmail('');
         setUserPassword('');
         dispatch(closeModal());
+      } else {
+        setLoginError(true);
       }
-    } else {
-      setEmailError(true);
-      setPasswordError(true);
+    } catch (err) {
+      console.error('Error fetching users:', err);
+      setLoginError(true);
     }
+
+    // const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    // if (storedUser) {
+    //   if (storedUser.email !== userEmail) {
+    //     setEmailError(true);
+    //   } else {
+    //     setEmailError(false);
+    //   }
+
+    //   if (storedUser.password !== userPassword) {
+    //     setPasswordError(true);
+    //   } else {
+    //     setPasswordError(false);
+    //   }
+
+    //   if (storedUser.email === userEmail && storedUser.password === userPassword) {
+    //     const userLogin = {
+    //       email: userEmail,
+    //       password: userPassword
+    //     };
+
+    //     localStorage.setItem('userLogin', JSON.stringify(userLogin));
+
+    //     setUserEmail('');
+    //     setUserPassword('');
+    //     dispatch(closeModal());
+    //   }
+    // } else {
+    //   setEmailError(true);
+    //   setPasswordError(true);
+    // }
   }
 
   return (
@@ -68,7 +91,7 @@ const LoginForm = () => {
           value={userEmail}
           onChange={(e) => setUserEmail(e.target.value)}
         />
-        {emailError && <span className="login-form__error-message">Неправильний email</span>}
+        {/* {emailError && <span className="login-form__error-message">Неправильний email</span>} */}
       </div>
       <div className="login-form__password">
         <label htmlFor="password">Пароль</label>
@@ -81,8 +104,9 @@ const LoginForm = () => {
           value={userPassword}
           onChange={onPasswordChange}
         />
-        {passwordError && <span className="login-form__error-message">Неправильний пароль</span>}
+        {/* {passwordError && <span className="login-form__error-message">Неправильний пароль</span>} */}
       </div>
+      {loginError && <span className="login-form__error-message">Неправильна пошта чи пароль</span>}
       <button type="submit" className="login-form__submit">Увійти</button>
     </form>
   )

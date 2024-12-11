@@ -30,7 +30,7 @@ const TicketDateTimePicker = () => {
     return days.map(({ dayMont, dayWeek, Month }, index) => {
       const dayWithMonth = `${dayMont} ${monthsWithGenitive[Month]}`;
       return (
-        <li key={index} className={`days-time__item ${dayWithMonth == selectedDay ? "days-time__item-active" : ""}`} onClick={() => dispatch(setSelectedDay({dayWithMonth, price}))}>{dayMont}<br />{weekDays[dayWeek]}</li>
+        <li key={index} className={`days-time__item ${dayWithMonth == selectedDay ? "days-time__item-active" : ""}`} onClick={() => dispatch(setSelectedDay({ dayWithMonth, price }))}>{dayMont}<br />{weekDays[dayWeek]}</li>
       )
     })
   }

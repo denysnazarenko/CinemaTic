@@ -75,5 +75,8 @@
 
   &__error-message {
     color: red;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
 }

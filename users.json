@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "b2807b29-ec53-4a8c-9b2e-919c97401d01",
+      "name": "Денис Назаренко",
+      "email": "dindsadasd@gmail.com",
+      "phone": "09641414",
+      "password": "saddsd322d"
+    },
+    {
+      "id": "938d0e4c-fbe8-433f-b487-c19eb775b233",
+      "name": "Денис",
+      "email": "dinis@gmail.com",
+      "phone": "096734543",
+      "password": "ksafjkas4198c"
+    }
+  ]
+}
